@@ -1,6 +1,6 @@
 import { AdapterInterface } from './adapter.interface.ts';
 
-export type CacheContentType = string | Array<string | object | CacheContentType> | object
+export type CacheContentType = string | object | Array<CacheContentType>
 
 /**
  * This class takes an CacheAdapter and provides an interface for easy content-caching
@@ -57,7 +57,7 @@ export class Cache {
      * @param key
      * @param content
      */
-    forever<T (key: string, content: <CacheContentType T "">): Promise<void> {
+    forever(key: string, content: CacheContentType): Promise<void> {
         return this.adapter.forever(key, this.serialize(content))
     }
 
